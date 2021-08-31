@@ -47,7 +47,8 @@ export default ToDo;
 const styles= StyleSheet.create ({
     container: {
         flex: 1,
-        backgroundColor: '#EBEAED'
+        backgroundColor: 'lightgrey',
+
     },
     taskscontainer:{
         paddingTop:80,

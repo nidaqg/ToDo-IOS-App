@@ -1,17 +1,23 @@
 import React from "react";
-import { ImageBackground, StyleSheet, View, Text } from "react-native";
+import { ImageBackground, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
-function WelcomeScreen(props) {
+import ToDo from './ToDo';
+
+
+function WelcomeScreen({navigation}) {
   return (
     //background image
     <ImageBackground
       style={styles.background}
       resizeMode="cover"
-      source={require("../assets/rain.jpg")}
-    >
+      source={require("../assets/rain.jpg")}>
       {/* <Text style={styles.logo}>Weather App</Text> */}
 
-      <View style={styles.blue}></View>
+      <TouchableOpacity 
+      style={styles.blue}
+      onPress={() => navigation.navigate('ToDo')}>
+        <Text style={styles.text}>Let's get started!</Text>
+      </TouchableOpacity>
 
       <View style={styles.red}></View>
     </ImageBackground>
@@ -34,13 +40,21 @@ const styles = StyleSheet.create({
   blue: {
     backgroundColor: "dodgerblue",
     width: "100%",
-    height: 70,
+    height: 50,
+    alignItems:'center',
+    justifyContent: 'center',
+    
   },
   red: {
     backgroundColor: "tomato",
     width: "100%",
-    height: 70,
+    height: 50,
   },
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white'
+  }
 });
 
 export default WelcomeScreen;
