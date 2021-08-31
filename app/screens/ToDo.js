@@ -44,6 +44,8 @@ function ToDo(props) {
 
 export default ToDo;
 
+
+//stylesheets
 const styles= StyleSheet.create ({
     container: {
         flex: 1,

@@ -1,25 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ImageBackground, StyleSheet, View, Text, TouchableOpacity } from "react-native";
-
-import ToDo from './ToDo';
-
+import {useFocusEffect} from "@react-navigation/native";
 
 function WelcomeScreen({navigation}) {
+
+
+useFocusEffect(() => {
+  setTimeout(()=> {navigation.navigate('TaskGroups')}, 1000)
+})
+
   return (
     //background image
     <ImageBackground
       style={styles.background}
-      resizeMode="cover"
-      source={require("../assets/rain.jpg")}>
-      {/* <Text style={styles.logo}>Weather App</Text> */}
+      resizeMode="contain"
+      source={require("../assets/logo.png")}>
 
-      <TouchableOpacity 
+      <View 
       style={styles.blue}
       onPress={() => navigation.navigate('ToDo')}>
-        <Text style={styles.text}>Let's get started!</Text>
-      </TouchableOpacity>
+      </View>
 
-      <View style={styles.red}></View>
+      <View style={styles.red}></View> 
     </ImageBackground>
   );
 }
@@ -28,17 +30,12 @@ function WelcomeScreen({navigation}) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     alignItems: "center",
-  },
-  logo: {
-    width: 100,
-    height: 100,
-    position: "absolute",
-    top: 70,
+    backgroundColor: 'white',
   },
   blue: {
-    backgroundColor: "dodgerblue",
+    backgroundColor: "tomato",
     width: "100%",
     height: 50,
     alignItems:'center',
