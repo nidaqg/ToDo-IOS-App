@@ -1,20 +1,41 @@
-import React from 'react';
-import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard } from 'react-native';
 import Task from '../components/Task';
 
 
 function ToDo(props) {
+
+    const [task, setTask] = useState('');
+    const[tasklist, setTasklist] = useState([])
+
+    //function to handle change in input box
+    const handleChange = (text) => {
+      setTask(text)
+    }
+
+    //function to handle clicking of add button
+    const handleAddTask =()=> {
+        Keyboard.dismiss();
+        setTasklist([...tasklist, task])
+        setTask(null)
+    }
+    
     return(
         <>
         <SafeAreaView style={styles.container}>
 
             <View style={styles.taskscontainer}>
-            <Text style={styles.header}>Things to do</Text>
+            <Text style={styles.header}></Text>
 
             <View style={styles.list}>
-             <Task item={"make coffee"}></Task>
-             <Task item={"grocery shopping"}></Task>
-             <Task item={"pick up kids from school"}></Task>
+                {/* use map to iterate over all the tasks in the tasklist array */}
+            {
+                tasklist.map((item, index) => {
+                   return <Task 
+                   key={index}
+                   item={item}/>
+                })
+            }
 
             </View>
             </View>
@@ -28,10 +49,14 @@ function ToDo(props) {
         <TextInput 
         style={styles.input}
         placeholder={"What to do?"}
+        onChangeText={handleChange}
+        value ={task}
         />
 
 {/* add task button */}
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress= {() => handleAddTask()}
+        >
             <View style={styles.addtaskcontainer}>
              <Text style={styles.addtext}>+</Text>
             </View>

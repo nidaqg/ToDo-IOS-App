@@ -16,14 +16,18 @@ export default function App() {
         <Stack.Screen
           name="Welcome"
           component={WelcomeScreen}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="TaskGroups"
           component={TaskGroups}
+          options={{ headerShown: false }}
         />
         <Stack.Screen 
         name="ToDo" 
-        component={ToDo} />
+        component={ToDo} 
+        options={{ headerShown: false }}
+        />
       </Stack.Navigator>
 
     </NavigationContainer>

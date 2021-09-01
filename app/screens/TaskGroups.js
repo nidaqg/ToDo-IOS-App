@@ -5,13 +5,15 @@ import Group from '../components/Group';
 function TaskGroups(props) {
  
 const [taskgroup, setTaskgroup] = useState('');
+const [grouplist, setGrouplist] =useState([]);
 
 const handleChange =(text) => {
     setTaskgroup(text)
 }
 
 const handleSubmit = (e) => {
-    console.log(taskgroup)
+    Keyboard.dismiss();
+    setGrouplist([...grouplist,(taskgroup)])
 }
     
 return (
@@ -24,6 +26,16 @@ return (
     </View>
 
     <View style={styles.group}>
+        {/* use map to iterate over all the groups saved in grouplist array */}
+
+        {
+            grouplist.map((item, index) => {
+                return <Group
+                key={index}
+                title={item}
+                />
+            })
+        }
         <Group title={"Groceries"}/>
         <Group title={"School Stuff"}/>
         <Group title={"Daily"}/>
@@ -37,6 +49,7 @@ return (
             {/* input box */}
         <TextInput 
         onChangeText={handleChange}
+        value={taskgroup}
         style={styles.input}
         placeholder={"Add a new task group"}
         />
