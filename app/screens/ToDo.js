@@ -19,6 +19,13 @@ function ToDo(props) {
         setTasklist([...tasklist, task])
         setTask(null)
     }
+
+    // function to handle deleting task
+    const deleteTask =(index) => {
+      let listCopy = [...tasklist]
+      listCopy.splice(index, 1);
+      setTasklist(listCopy)
+    }
     
     return(
         <>
@@ -32,8 +39,11 @@ function ToDo(props) {
             {
                 tasklist.map((item, index) => {
                    return <Task 
-                   key={index}
+                     onSubmit={()=> deleteTask(index)}
+                       key={index}
                    item={item}/>
+                   
+                   
                 })
             }
 

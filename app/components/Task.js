@@ -7,12 +7,17 @@ function Task(props) {
     <View style={styles.task}>
       {/* the left view holds the blue box + the text */}
       <View style={styles.left}>
-        <TouchableOpacity style={styles.square}></TouchableOpacity>
+        <TouchableOpacity 
+        style={styles.square}
+        onPress={props.onSubmit}
+        >
+
+        </TouchableOpacity>
         <Text style={styles.itemtext}>{props.item}</Text>
       </View>
 
       {/*Right view holds the done checkbox  */}
-      <View style={styles.right}></View>
+      {/* <View style={styles.right}></View> */}
     </View>
   );
 }
@@ -41,7 +46,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     backgroundColor: "dodgerblue",
-    borderRadius: 5,
+    borderRadius: 20,
     marginRight: 20,
   },
   right: {

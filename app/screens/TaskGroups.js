@@ -11,8 +11,8 @@ const handleChange =(text) => {
     setTaskgroup(text)
 }
 
-const handleSubmit = (e) => {
-    Keyboard.dismiss();
+const handleSubmit = () => {
+    // Keyboard.dismiss();
     setGrouplist([...grouplist,(taskgroup)])
 }
     
@@ -59,7 +59,7 @@ return (
             <Button 
             title={"+"}
             style={styles.addgroup}
-            onPress={handleSubmit}
+            onPress={() => handleSubmit()}
             >
             </Button>
         </TouchableOpacity>
