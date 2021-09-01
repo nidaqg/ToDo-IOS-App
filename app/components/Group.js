@@ -21,12 +21,10 @@ const styles = StyleSheet.create({
         margin: 15,
         alignItems: 'center',
         justifyContent:'center',
-        borderColor: 'black',
-        borderWidth:1,
         borderRadius: 10
     },
     text:{
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: 'bold',
     }
 })

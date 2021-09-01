@@ -14,7 +14,7 @@ useFocusEffect(() => {
     <ImageBackground
       style={styles.background}
       resizeMode="contain"
-      source={require("../assets/logo.png")}>
+      source={require("../assets/logo.gif")}>
 
       <View 
       style={styles.blue}
