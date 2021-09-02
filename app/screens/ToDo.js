@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard } from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard, Pressable, Button } from 'react-native';
 import Task from '../components/Task';
-
+import {useNavigation} from '@react-navigation/native'
 
 function ToDo(props) {
+
+    const navigation = useNavigation();
 
     const [task, setTask] = useState('');
     const[tasklist, setTasklist] = useState([])
@@ -31,8 +33,18 @@ function ToDo(props) {
         <>
         <SafeAreaView style={styles.container}>
 
+            {/* back button */}
+
+            <TouchableOpacity 
+            style={styles.button}
+            onPress={() => navigation.navigate('TaskGroups')}>
+            <Text style={styles.buttontext}>Back</Text>
+            
+            </TouchableOpacity>
+ 
+           {/* task container */}
             <View style={styles.taskscontainer}>
-            <Text style={styles.header}></Text>
+            <Text style={styles.header}>To Do</Text>
 
             <View style={styles.list}>
                 {/* use map to iterate over all the tasks in the tasklist array */}
@@ -88,7 +100,7 @@ const styles= StyleSheet.create ({
 
     },
     taskscontainer:{
-        paddingTop:80,
+        paddingTop:50,
         paddingHorizontal: 20
     },
     header: {
@@ -105,7 +117,7 @@ const styles= StyleSheet.create ({
      width: '100%',
      flexDirection: 'row',
      justifyContent: 'space-around',
-     alignItems: 'center'
+     alignItems:'center'
 
     },
     input: {
@@ -131,7 +143,16 @@ const styles= StyleSheet.create ({
   
      
     },
-    addtext: {
-
+    button: {
+        backgroundColor: 'tomato',
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderRadius: 10,
+        top:20,
+        marginLeft:20,
+        width:70,
+    },
+    buttontext: {
+        fontSize: 20
     }
 })

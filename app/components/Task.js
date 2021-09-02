@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   square: {
     width: 24,
     height: 24,
-    backgroundColor: "dodgerblue",
+    backgroundColor: "tomato",
     borderRadius: 20,
     marginRight: 20,
   },
