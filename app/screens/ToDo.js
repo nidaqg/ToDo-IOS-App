@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard, Pressable, Button } from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard, Image} from 'react-native';
 import Task from '../components/Task';
 import {useNavigation} from '@react-navigation/native'
 
@@ -34,19 +34,22 @@ function ToDo(props) {
         <SafeAreaView style={styles.container}>
 
             {/* back button */}
-
-            <TouchableOpacity 
-            style={styles.button}
-            onPress={() => navigation.navigate('TaskGroups')}>
-            <Text style={styles.buttontext}>Back</Text>
-            
-            </TouchableOpacity>
+            <TouchableOpacity
+        onPress= {() => navigation.navigate('TaskGroups')}
+        >
+            <View style={styles.backBtn}>
+                <Image 
+                source={require("../assets/back.png")}
+                style={{ width: 35, height: 35 }}
+                />
+            </View>
+        </TouchableOpacity>
  
            {/* task container */}
             <View style={styles.taskscontainer}>
             <Text style={styles.header}>To Do</Text>
 
-            <View style={styles.list}>
+            <View>
                 {/* use map to iterate over all the tasks in the tasklist array */}
             {
                 tasklist.map((item, index) => {
@@ -61,12 +64,16 @@ function ToDo(props) {
 
             </View>
             </View>
+
+            
         </SafeAreaView>
 
         {/*  user input area at bottom of screen */}
         <KeyboardAvoidingView 
         behavior={Platform.OS === "ios" ? 'padding': "height"}
         style={styles.writetaskcontainer}>
+
+
             {/* input box */}
         <TextInput 
         style={styles.input}
@@ -80,7 +87,7 @@ function ToDo(props) {
         onPress= {() => handleAddTask()}
         >
             <View style={styles.addtaskcontainer}>
-             <Text style={styles.addtext}>+</Text>
+             <Text style={styles.addBtn}>+</Text>
             </View>
         </TouchableOpacity>
 
@@ -96,7 +103,7 @@ export default ToDo;
 const styles= StyleSheet.create ({
     container: {
         flex: 1,
-        backgroundColor: 'lightgrey',
+        backgroundColor: '#db7093',
 
     },
     taskscontainer:{
@@ -107,9 +114,6 @@ const styles= StyleSheet.create ({
         fontSize:24,
         fontWeight:'bold',
         marginBottom:20
-    },
-    list: {
-
     },
     writetaskcontainer:{
      position: 'absolute',
@@ -125,34 +129,38 @@ const styles= StyleSheet.create ({
      paddingHorizontal: 15,
      width:300,
      backgroundColor: 'white',
-     opacity: 0.4,
       borderRadius:60,
-      borderColor: 'dodgerblue',
       borderWidth:1
     },
     addtaskcontainer:{
         width: 60,
         height: 60,
         backgroundColor: 'white',
-        opacity: 0.4,
         borderRadius:60,
-        borderColor: 'dodgerblue',
         borderWidth:1,
         alignItems: 'center',
         justifyContent: 'center'
   
      
     },
-    button: {
-        backgroundColor: 'tomato',
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        borderRadius: 10,
-        top:20,
-        marginLeft:20,
-        width:70,
+    backBtn: {
+        width: 60,
+        height: 40,
+        backgroundColor: 'white',
+        borderRadius:20,
+        borderWidth:1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: 15,
+        alignItems:'center',
+        justifyContent: 'center'
     },
     buttontext: {
         fontSize: 20
+    },
+    addBtn: {
+        color:'black',
+      fontSize: 30,
+      fontWeight: 'bold'
     }
 })

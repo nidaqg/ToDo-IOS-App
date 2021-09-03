@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Button } from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Button, Pressable } from 'react-native';
 import Group from '../components/Group';
 
 function TaskGroups(props) {
@@ -56,12 +56,12 @@ return (
 
 {/* add task button */}
         <TouchableOpacity>
-            <Button 
-            title={"+"}
+            <Pressable 
             style={styles.addgroup}
             onPress={() => handleSubmit()}
             >
-            </Button>
+                <Text style={styles.addBtn}>+</Text>
+            </Pressable>
         </TouchableOpacity>
 
         </KeyboardAvoidingView>
@@ -75,7 +75,7 @@ return (
 const styles = StyleSheet.create ({
     container: {
      flex: 1,
-     backgroundColor: 'white'
+     backgroundColor: 'floralwhite'
     },
     group:{
      flexDirection: 'row',
@@ -106,7 +106,6 @@ const styles = StyleSheet.create ({
         paddingHorizontal: 15,
         width:300,
         backgroundColor: 'white',
-        opacity: 0.4,
          borderRadius:60,
          borderWidth:1
        },
@@ -114,7 +113,6 @@ const styles = StyleSheet.create ({
            width: 60,
            height: 60,
            backgroundColor: 'white',
-           opacity: 0.4,
            borderRadius:60,
            borderWidth:1,
            alignItems: 'center',
@@ -122,7 +120,8 @@ const styles = StyleSheet.create ({
      
         
        },
-       addtext: {
+       addBtn: {
+           color:'black',
          fontSize: 30,
          fontWeight: 'bold'
        }

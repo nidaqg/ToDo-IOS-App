@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -9,13 +9,14 @@ function Group(props) {
   return (
       //main  view, in entire square
       
-      <TouchableOpacity 
+      <TouchableHighlight 
+      underlayColor="floralwhite"
       style={styles.group}
       onPress={() => navigation.navigate('ToDo')}>
 
           <Text style={styles.text}>{props.title}</Text>
 
-      </TouchableOpacity>
+      </TouchableHighlight>
   );
 }
 
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     group: {
         width: '40%',
         height: 150,
-        backgroundColor: 'tomato',
+        backgroundColor: '#db7093',
         margin: 15,
         alignItems: 'center',
         justifyContent:'center',
