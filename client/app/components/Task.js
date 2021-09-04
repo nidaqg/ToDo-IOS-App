@@ -16,8 +16,6 @@ function Task(props) {
         <Text style={styles.itemtext}>{props.item}</Text>
       </View>
 
-      {/*Right view holds the done checkbox  */}
-      {/* <View style={styles.right}></View> */}
     </View>
   );
 }
@@ -45,15 +43,10 @@ const styles = StyleSheet.create({
   square: {
     width: 24,
     height: 24,
-    backgroundColor: "darkmagenta",
+    backgroundColor: "white",
+    borderColor:'black',
+    borderWidth:2,
     borderRadius: 20,
     marginRight: 20,
-  },
-  right: {
-    width: 12,
-    height: 12,
-    borderColor: "dodgerblue",
-    borderWidth: 2,
-    borderRadius: 10,
-  },
+  }
 });

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Button, Pressable } from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard, Alert, ScrollView} from 'react-native';
 import Group from '../components/Group';
 
 function TaskGroups(props) {
@@ -12,12 +12,16 @@ const handleChange =(text) => {
 }
 
 const handleSubmit = () => {
-    // Keyboard.dismiss();
-    setGrouplist([...grouplist,(taskgroup)])
+    Keyboard.dismiss();
+    if(taskgroup){
+    setGrouplist([...grouplist,(taskgroup)]);
+    setTaskgroup(null)
+    } else {
+        Alert.alert("Oops! Looks like you forgot to enter a group name")
+    }
 }
     
 return (
-
 // main View, denotes entire screen
 <SafeAreaView style={styles.container}>
 {/* View holds header, task groups and user input */}
@@ -42,6 +46,7 @@ return (
         <Group title={"Target"}/>
     </View>
 
+    
 {/* User input area */}
     <KeyboardAvoidingView 
         behavior={Platform.OS === "ios" ? 'padding': "height"}
@@ -55,19 +60,16 @@ return (
         />
 
 {/* add task button */}
-        <TouchableOpacity>
-            <Pressable 
+        <TouchableOpacity
             style={styles.addgroup}
             onPress={() => handleSubmit()}
             >
                 <Text style={styles.addBtn}>+</Text>
-            </Pressable>
         </TouchableOpacity>
 
         </KeyboardAvoidingView>
 
-
-</SafeAreaView>
+ </SafeAreaView>
 )};
 
 //stylesheets
@@ -79,7 +81,7 @@ const styles = StyleSheet.create ({
     },
     group:{
      flexDirection: 'row',
-     justifyContent: 'center',
+      justifyContent: 'center',
      top: 100,
      flexWrap: 'wrap'
     },

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight } from "react-native";
+import { StyleSheet, Text, TouchableHighlight, Image, ScrollView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -8,14 +8,11 @@ function Group(props) {
     const navigation = useNavigation(); 
   return (
       //main  view, in entire square
-      
       <TouchableHighlight 
       underlayColor="floralwhite"
       style={styles.group}
       onPress={() => navigation.navigate('ToDo')}>
-
           <Text style={styles.text}>{props.title}</Text>
-
       </TouchableHighlight>
   );
 }

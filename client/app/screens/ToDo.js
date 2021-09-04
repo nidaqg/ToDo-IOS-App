@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard, Image} from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard, Image, Alert} from 'react-native';
 import Task from '../components/Task';
 import {useNavigation} from '@react-navigation/native'
 
@@ -18,8 +18,12 @@ function ToDo(props) {
     //function to handle clicking of add button
     const handleAddTask =()=> {
         Keyboard.dismiss();
+        if(task){
         setTasklist([...tasklist, task])
         setTask(null)
+        } else {
+            Alert.alert("Oops, looks like you forgot to enter a task!")
+        }
     }
 
     // function to handle deleting task
