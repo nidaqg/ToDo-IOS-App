@@ -4,6 +4,7 @@ import { TextInput } from "react-native-paper";
 import { FlipInView } from "./components/animations";
 
 import { Group } from "./components/Group";
+import { Header } from "./components/Header";
 import {
   SafeArea,
   GroupSquare,
@@ -40,9 +41,7 @@ export const TaskGroups = () => {
   return (
     <SafeArea>
         <ScrollView>
-      <HeaderContainer>
-        <Title>Let's Get It Done!</Title>
-      </HeaderContainer>
+          <Header/>
       
       <GroupSquare>
         {grouplist.map((item, index) => {

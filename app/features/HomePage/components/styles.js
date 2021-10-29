@@ -10,7 +10,6 @@ export const SafeArea = styled.SafeAreaView`
 export const GroupSquare = styled.View`
   flex-direction: row;
   justify-content: center;
-  top: 100px;
   flex-wrap: wrap;
 `;
 
@@ -19,11 +18,6 @@ export const Title = styled.Text`
   font-weight: bold;
 `;
 
-export const HeaderContainer = styled.View`
-  align-items: center;
-  justify-content: center;
-  top: 50px;
-`;
 
 export const InputContainer = styled.View`
 position: absolute;
