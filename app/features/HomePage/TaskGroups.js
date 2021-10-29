@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Text, Keyboard, Alert, ScrollView } from "react-native";
+import { Keyboard, Alert, ScrollView } from "react-native";
+import { TextInput } from "react-native-paper";
+
 import { Group } from "./components/Group";
 import {
   SafeArea,
@@ -8,12 +10,14 @@ import {
   HeaderContainer,
   InputContainer,
   UserInput,
-  AddButton,
+  FloatingBtn
 } from "./components/styles";
 
 export const TaskGroups = () => {
   const [taskgroup, setTaskgroup] = useState("");
   const [grouplist, setGrouplist] = useState([]);
+
+  const [hidden, setHidden] = useState(true)
 
   const handleChange = (text) => {
     setTaskgroup(text);
@@ -29,6 +33,7 @@ export const TaskGroups = () => {
     }
   };
 
+  
   return (
     <SafeArea>
         <ScrollView>
@@ -47,17 +52,30 @@ export const TaskGroups = () => {
       </GroupSquare>
       </ScrollView>
 
-      <InputContainer behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      <FloatingBtn
+    icon="plus"
+    onPress={() => setHidden(false)}
+     />
+
+{!hidden &&  <InputContainer>
         <UserInput
           onChangeText={handleChange}
           value={taskgroup}
+          right={<TextInput.Icon 
+            name="plus"
+            onPress={()=> {
+              handleSubmit();
+              setHidden(true)
+            }}
+            />}
           placeholder={"Add a new task group"}
-        ></UserInput>
-
-        <AddButton onPress={() => handleSubmit()}>
-          <Text>+</Text>
-        </AddButton>
+        />
       </InputContainer>
+
+
+
+}
+      
     </SafeArea>
   );
 };

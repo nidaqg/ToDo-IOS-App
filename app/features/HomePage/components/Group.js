@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     group: {
         width: '40%',
         height: 150,
-        backgroundColor: '#db7093',
+        backgroundColor: 'dodgerblue',
         margin: 15,
         alignItems: 'center',
         justifyContent:'center',
