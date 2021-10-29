@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Keyboard, Alert, ScrollView } from "react-native";
 import { TextInput } from "react-native-paper";
+import { FlipInView } from "./components/animations";
 
 import { Group } from "./components/Group";
 import {
@@ -19,10 +20,12 @@ export const TaskGroups = () => {
 
   const [hidden, setHidden] = useState(true)
 
+  //function for input
   const handleChange = (text) => {
     setTaskgroup(text);
   };
 
+  //function for submit button
   const handleSubmit = () => {
     Keyboard.dismiss();
     if (taskgroup) {
@@ -58,11 +61,16 @@ export const TaskGroups = () => {
      />
 
 {!hidden &&  <InputContainer>
+   <FlipInView>
         <UserInput
           onChangeText={handleChange}
           value={taskgroup}
+          left={<TextInput.Icon
+          name="close"
+          onPress={() => setHidden(true)}
+          />}
           right={<TextInput.Icon 
-            name="plus"
+            name="plus-circle-outline"
             onPress={()=> {
               handleSubmit();
               setHidden(true)
@@ -70,10 +78,8 @@ export const TaskGroups = () => {
             />}
           placeholder={"Add a new task group"}
         />
+        </FlipInView>
       </InputContainer>
-
-
-
 }
       
     </SafeArea>
