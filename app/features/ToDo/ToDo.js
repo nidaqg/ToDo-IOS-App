@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard, Image, Alert} from 'react-native';
-import Task from '../components/Task';
+import Task from './components/Task';
 import {useNavigation} from '@react-navigation/native'
 
-function ToDo(props) {
+export const ToDo = () => {
 
     const navigation = useNavigation();
 
@@ -43,7 +43,7 @@ function ToDo(props) {
         >
             <View style={styles.backBtn}>
                 <Image 
-                source={require("../assets/back.png")}
+                source={require("../../assets/back.png")}
                 style={{ width: 35, height: 35 }}
                 />
             </View>
@@ -100,7 +100,6 @@ function ToDo(props) {
     )
 };
 
-export default ToDo;
 
 
 //stylesheets

@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard, Alert, ScrollView} from 'react-native';
-import Group from '../components/Group';
+import {Group} from './components/Group';
 
-function TaskGroups(props) {
+export const TaskGroups = () => {
  
 const [taskgroup, setTaskgroup] = useState('');
 const [grouplist, setGrouplist] =useState([]);
@@ -22,16 +22,12 @@ const handleSubmit = () => {
 }
     
 return (
-// main View, denotes entire screen
 <SafeAreaView style={styles.container}>
-{/* View holds header, task groups and user input */}
     <View style={styles.header}>
         <Text style={styles.text}>Let's Get It Done!</Text>
     </View>
 
     <View style={styles.group}>
-        {/* use map to iterate over all the groups saved in grouplist array */}
-
         {
             grouplist.map((item, index) => {
                 return <Group
@@ -47,11 +43,9 @@ return (
     </View>
 
     
-{/* User input area */}
     <KeyboardAvoidingView 
         behavior={Platform.OS === "ios" ? 'padding': "height"}
         style={styles.inputcontainer}>
-            {/* input box */}
         <TextInput 
         onChangeText={handleChange}
         value={taskgroup}
@@ -59,7 +53,6 @@ return (
         placeholder={"Add a new task group"}
         />
 
-{/* add task button */}
         <TouchableOpacity
             style={styles.addgroup}
             onPress={() => handleSubmit()}
@@ -129,6 +122,4 @@ const styles = StyleSheet.create ({
        }
 
 })
-
-export default TaskGroups;
 

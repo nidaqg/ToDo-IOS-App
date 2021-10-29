@@ -3,8 +3,8 @@ import { StyleSheet, Text, TouchableHighlight, Image, ScrollView } from "react-n
 import { useNavigation } from '@react-navigation/native';
 
 
-function Group(props) {
-    //use navigation hook to direct ot new screen
+export const Group = ({title}) => {
+    //use navigation hook to direct to new screen
     const navigation = useNavigation(); 
   return (
       //main  view, in entire square
@@ -12,12 +12,11 @@ function Group(props) {
       underlayColor="floralwhite"
       style={styles.group}
       onPress={() => navigation.navigate('ToDo')}>
-          <Text style={styles.text}>{props.title}</Text>
+          <Text style={styles.text}>{title}</Text>
       </TouchableHighlight>
   );
 }
 
-export default Group;
 
 const styles = StyleSheet.create({
     group: {
