@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard, Image, Alert} from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TouchableOpacity, Keyboard, Alert, ScrollView} from 'react-native';
 import Task from './components/Task';
 import {useNavigation} from '@react-navigation/native'
+import { TextInput, Button } from 'react-native-paper';
 
 export const ToDo = () => {
 
@@ -36,25 +37,20 @@ export const ToDo = () => {
     return(
         <>
         <SafeAreaView style={styles.container}>
+        <View>
+     <Button 
+    style={{alignSelf:'flex-start'}}
+    color="black"
+    icon="arrow-left"
+    onPress={() => navigation.goBack()}
+    >Back</Button>
+    <Text style={styles.header}></Text>
 
-            {/* back button */}
-            <TouchableOpacity
-        onPress= {() => navigation.navigate('TaskGroups')}
-        >
-            <View style={styles.backBtn}>
-                <Image 
-                source={require("../../assets/back.png")}
-                style={{ width: 35, height: 35 }}
-                />
-            </View>
-        </TouchableOpacity>
- 
-           {/* task container */}
+        </View>
+    <ScrollView>
             <View style={styles.taskscontainer}>
-            <Text style={styles.header}>To Do</Text>
 
             <View>
-                {/* use map to iterate over all the tasks in the tasklist array */}
             {
                 tasklist.map((item, index) => {
                    return <Task 
@@ -69,16 +65,14 @@ export const ToDo = () => {
             </View>
             </View>
 
-            
+         </ScrollView>   
         </SafeAreaView>
 
-        {/*  user input area at bottom of screen */}
         <KeyboardAvoidingView 
         behavior={Platform.OS === "ios" ? 'padding': "height"}
         style={styles.writetaskcontainer}>
 
 
-            {/* input box */}
         <TextInput 
         style={styles.input}
         placeholder={"What to do?"}
@@ -106,21 +100,21 @@ export const ToDo = () => {
 const styles= StyleSheet.create ({
     container: {
         flex: 1,
-        backgroundColor: '#db7093',
+        backgroundColor: 'white',
 
     },
     taskscontainer:{
-        paddingTop:50,
+        paddingVertical:10,
         paddingHorizontal: 20
     },
     header: {
         fontSize:24,
         fontWeight:'bold',
-        marginBottom:20
+        margin:15
     },
     writetaskcontainer:{
      position: 'absolute',
-     bottom: 60,
+     bottom: 10,
      width: '100%',
      flexDirection: 'row',
      justifyContent: 'space-around',
@@ -128,12 +122,9 @@ const styles= StyleSheet.create ({
 
     },
     input: {
-     paddingVertical: 15,
-     paddingHorizontal: 15,
      width:300,
      backgroundColor: 'white',
-      borderRadius:60,
-      borderWidth:1
+      borderRadius:5,
     },
     addtaskcontainer:{
         width: 60,

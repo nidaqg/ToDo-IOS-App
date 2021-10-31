@@ -11,12 +11,12 @@ const GroupItem = styled.TouchableOpacity`
 `;
 
 export const Group = ({title}) => {
-//use navigation hook to direct to new screen
-const navigation = useNavigation(); 
+
+  const navigation = useNavigation()
   return (
     <>
     <GroupItem
-    onPress={() => navigation.navigate('ToDo')}
+    onPress={() => navigation.navigate('ToDo', {group:{title}})}
     >
     <List.Section>
     <List.Item title={title} left={() => <List.Icon icon="star-outline" />}/>
