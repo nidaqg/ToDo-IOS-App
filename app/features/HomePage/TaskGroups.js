@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Keyboard, Alert, ScrollView } from "react-native";
+import { Alert, ScrollView } from "react-native";
 import { TextInput } from "react-native-paper";
 import { FlipInView } from "./components/animations";
 
@@ -8,27 +8,19 @@ import { Header } from "./components/Header";
 import {
   SafeArea,
   GroupSquare,
-  Title,
-  HeaderContainer,
   InputContainer,
   UserInput,
   FloatingBtn
 } from "./components/styles";
 
 export const TaskGroups = () => {
-  const [taskgroup, setTaskgroup] = useState("");
+  const [taskgroup, setTaskgroup] = useState(null);
   const [grouplist, setGrouplist] = useState([]);
 
   const [hidden, setHidden] = useState(true)
 
-  //function for input
-  const handleChange = (text) => {
-    setTaskgroup(text);
-  };
-
   //function for submit button
   const handleSubmit = () => {
-    Keyboard.dismiss();
     if (taskgroup) {
       setGrouplist([...grouplist, taskgroup]);
       setTaskgroup(null);
@@ -40,9 +32,9 @@ export const TaskGroups = () => {
   
   return (
     <SafeArea>
-        <ScrollView>
           <Header/>
-      
+      <ScrollView>
+
       <GroupSquare>
         {grouplist.map((item, index) => {
           return <Group key={index} title={item} />;
@@ -59,27 +51,30 @@ export const TaskGroups = () => {
     onPress={() => setHidden(false)}
      />
 
-{!hidden &&  <InputContainer>
-   <FlipInView>
-        <UserInput
-          onChangeText={handleChange}
-          value={taskgroup}
-          left={<TextInput.Icon
-          name="close"
-          onPress={() => setHidden(true)}
-          />}
-          right={<TextInput.Icon 
-            name="plus-circle-outline"
-            onPress={()=> {
-              handleSubmit();
-              setHidden(true)
-            }}
-            />}
-          placeholder={"Add a new task group"}
-        />
-        </FlipInView>
-      </InputContainer>
-}
+{hidden ? (
+null
+) : (
+  <FlipInView>
+<InputContainer>
+<UserInput style={{width: 300}}
+onChangeText={(taskgroup)=> setTaskgroup(taskgroup)}
+value={taskgroup}
+placeholder="add a task group"
+right={<TextInput.Icon 
+  name="plus-circle-outline"
+  onPress={()=> {
+    handleSubmit();
+  }}/>}
+  left={<TextInput.Icon
+    name="close"
+    onPress={() => setHidden(true)}
+    />}
+
+/>
+</InputContainer>
+</FlipInView>
+)}
+
       
     </SafeArea>
   );

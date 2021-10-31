@@ -1,23 +1,25 @@
 import React, { useRef, useEffect } from "react";
-// import { Animated } from "react-native";
-import { createAnimatableComponent} from 'react-native-animatable';
-import {View} from 'react-native';
+import { Animated } from "react-native";
 
+export const FlipInView = ({ duration = 500, ...props }) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
-export const FlipInView = ({...props }) => {
-const AnimatableView = createAnimatableComponent(View)
-
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: duration,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim, duration]);
 
   return (
-    <>
-    <AnimatableView
-    animation="flipInX"
-    easing="linear"
+    <Animated.View 
+      style={{
+        ...props.style,
+        opacity: fadeAnim,
+      }}
     >
       {props.children}
-
-    </AnimatableView>
-
-    </>
-  )
-}
+    </Animated.View>
+  );
+};
