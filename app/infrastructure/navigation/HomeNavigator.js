@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import {ToDo} from '../../features/ToDo/ToDo';
 import {TaskGroups} from '../../features/HomePage/TaskGroups';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 export const HomeNavigator = () => {
 

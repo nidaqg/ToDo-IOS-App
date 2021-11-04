@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components/native";
-import { useNavigation } from '@react-navigation/native';
 import { List } from 'react-native-paper';
 
 const GroupItem = styled.TouchableOpacity`
@@ -10,13 +9,12 @@ const GroupItem = styled.TouchableOpacity`
    margin: 10px;
 `;
 
-export const Group = ({title}) => {
+export const Group = ({title, onGroupClick}) => {
 
-  const navigation = useNavigation()
   return (
     <>
     <GroupItem
-    onPress={() => navigation.navigate('ToDo', {group:{title}})}
+    onPress={() => onGroupClick('ToDo', {group:{title}})}
     >
     <List.Section>
     <List.Item title={title} left={() => <List.Icon icon="star-outline" />}/>

@@ -3,9 +3,8 @@ import styled from "styled-components/native";
 
 
 const HeaderCard = styled.ImageBackground`
-flex:1;
+height:200px;
 background-color: dodgerblue;
-padding: 100px;
 align-items: center;
 justify-content: center;
 `
