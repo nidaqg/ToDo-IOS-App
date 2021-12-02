@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Alert, ScrollView } from "react-native";
-import { TextInput } from "react-native-paper";
+import { Alert, ScrollView, View, Text, KeyboardAvoidingView } from "react-native";
 import { FlipInView } from "./components/animations";
 import { TaskGroupContext } from "../../infrastructure/context/GroupListContext";
 
@@ -48,35 +47,26 @@ export const TaskGroups = ({ navigation }) => {
       </ScrollView>
 
       <FloatingBtn
-        icon="plus"
         onPress={() => {
-          setHidden(false);
-        }}
-      />
+          setHidden(!hidden);
+        }}>
+       <View>
+         <Text style={{color:'white', fontSize: 30}}>+</Text>
+         </View>
+      </FloatingBtn>
 
-      {hidden ? null : (
+      {!hidden &&
         <FlipInView>
           <InputContainer>
             <UserInput
-              style={{ width: 300 }}
               onChangeText={(taskgroup) => setTaskgroup(taskgroup)}
               value={taskgroup}
               placeholder="add a task group"
-              right={
-                <TextInput.Icon
-                  name="plus-circle-outline"
-                  onPress={() => {
-                    handleSubmit();
-                  }}
-                />
-              }
-              left={
-                <TextInput.Icon name="close" onPress={() => setHidden(true)} />
-              }
+              onSubmitEditing={() => handleSubmit()}
             />
           </InputContainer>
         </FlipInView>
-      )}
+      }
     </SafeArea>
   );
 };

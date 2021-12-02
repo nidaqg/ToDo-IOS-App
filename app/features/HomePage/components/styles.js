@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { FAB, Searchbar, TextInput } from 'react-native-paper';
+import { Button, Searchbar, TextInput } from 'react-native-paper';
 
 
 export const SafeArea = styled.SafeAreaView`
@@ -20,25 +20,30 @@ export const Title = styled.Text`
 
 export const InputContainer = styled.View`
 position: absolute;
-bottom: 26px;
-left:10px;
+bottom: 0px;
 width: 100%;
 flex-direction: row;
 justify-content: flex-start;
 align-items: center;
+justify-content: center;
 `;
 
 export const UserInput = styled(TextInput)`
-width: 300px;
-background-color: white;
+width: 100%;
+background-color: lightgrey;
 border-radius: 5px;
 `;
 
-export const FloatingBtn = styled(FAB)`
+export const FloatingBtn = styled.TouchableOpacity`
 position: absolute;
     margin: 16px;
     right: 0px;
-    bottom: 10px;
+    bottom: 60px;
+    border-radius: 50px;
+    width: 75px;
+    height: 75px;
+    justify-content: center;
+    align-items: center;
     background-color: black;
 `;
 
