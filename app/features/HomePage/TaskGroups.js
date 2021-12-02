@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Alert, ScrollView, View, Text, KeyboardAvoidingView } from "react-native";
+import { Alert, ScrollView} from "react-native";
 import { FlipInView } from "./components/animations";
 import { TaskGroupContext } from "../../infrastructure/context/GroupListContext";
 
@@ -11,6 +11,7 @@ import {
   InputContainer,
   UserInput,
   FloatingBtn,
+  FloatingBtnText
 } from "./components/styles";
 
 
@@ -50,9 +51,9 @@ export const TaskGroups = ({ navigation }) => {
         onPress={() => {
           setHidden(!hidden);
         }}>
-       <View>
-         <Text style={{color:'white', fontSize: 30}}>+</Text>
-         </View>
+       <>
+         <FloatingBtnText>+</FloatingBtnText>
+         </>
       </FloatingBtn>
 
       {!hidden &&

@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { Button, Searchbar, TextInput } from 'react-native-paper';
+import {TextInput } from 'react-native-paper';
 
 
 export const SafeArea = styled.SafeAreaView`
@@ -45,6 +45,11 @@ position: absolute;
     justify-content: center;
     align-items: center;
     background-color: black;
+`;
+
+export const FloatingBtnText = styled.Text`
+color: white;
+font-size: 30px;
 `;
 
 

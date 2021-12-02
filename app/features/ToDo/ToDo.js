@@ -37,17 +37,16 @@ export const ToDo = ({navigation}) => {
         <View>
      <Button 
     style={{alignSelf:'flex-start'}}
-    color="black"
+    color="grey"
     icon="arrow-left"
     onPress={() => navigation.goBack()}
     >Back</Button>
-    <Text style={styles.header}></Text>
 
         </View>
     <ScrollView>
             <View style={styles.taskscontainer}>
 
-            <View>
+            <>
             {
                 tasklist.map((item, index) => {
                    return <Task 
@@ -59,7 +58,7 @@ export const ToDo = ({navigation}) => {
                 })
             }
 
-            </View>
+            </>
             </View>
 
          </ScrollView>   
@@ -75,17 +74,8 @@ export const ToDo = ({navigation}) => {
         placeholder={"What to do?"}
         onChangeText={handleChange}
         value ={task}
+        onSubmitEditing={()=> handleAddTask()}
         />
-
-{/* add task button */}
-        <TouchableOpacity
-        onPress= {() => handleAddTask()}
-        >
-            <View style={styles.addtaskcontainer}>
-             <Text style={styles.addBtn}>+</Text>
-            </View>
-        </TouchableOpacity>
-
         </KeyboardAvoidingView>
         </>
     )
@@ -105,34 +95,22 @@ const styles= StyleSheet.create ({
         paddingHorizontal: 20
     },
     header: {
-        fontSize:24,
+        fontSize:12,
         fontWeight:'bold',
-        margin:15
     },
     writetaskcontainer:{
      position: 'absolute',
-     bottom: 10,
+     bottom: 0,
      width: '100%',
      flexDirection: 'row',
-     justifyContent: 'space-around',
+     justifyContent: 'center',
      alignItems:'center'
 
     },
     input: {
-     width:300,
-     backgroundColor: 'white',
+     width:"100%",
+     backgroundColor: 'lightgrey',
       borderRadius:5,
-    },
-    addtaskcontainer:{
-        width: 60,
-        height: 60,
-        backgroundColor: 'white',
-        borderRadius:60,
-        borderWidth:1,
-        alignItems: 'center',
-        justifyContent: 'center'
-  
-     
     },
     backBtn: {
         width: 60,

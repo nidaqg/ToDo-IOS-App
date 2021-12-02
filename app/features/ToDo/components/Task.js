@@ -25,12 +25,11 @@ export default Task;
 const styles = StyleSheet.create({
   task: {
     backgroundColor: "white",
-    padding: 15,
+    padding: 10,
     borderRadius: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 20,
   },
   itemtext: {
     fontSize: 20,
