@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import {StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView, TouchableOpacity, Keyboard, Alert, ScrollView} from 'react-native';
 import Task from './components/Task';
-import {useNavigation} from '@react-navigation/native'
 import { TextInput, Button } from 'react-native-paper';
 
-export const ToDo = () => {
-
-    const navigation = useNavigation();
+export const ToDo = ({navigation}) => {
 
     const [task, setTask] = useState('');
     const[tasklist, setTasklist] = useState([])

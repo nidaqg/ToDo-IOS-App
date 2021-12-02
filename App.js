@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeNavigator } from './app/infrastructure/navigation/HomeNavigator';
 //import icons from expo for tab
 import {Ionicons} from "@expo/vector-icons";
+import { TaskGroupContextProvider } from './app/infrastructure/context/GroupListContext';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +18,7 @@ const SettingsScreen = () => {
 export default function App() {
 
   return (
+    <TaskGroupContextProvider>
     <NavigationContainer>
     <Tab.Navigator
      screenOptions={({ route }) => ({
@@ -40,6 +42,7 @@ export default function App() {
 
 
     </NavigationContainer>
+    </TaskGroupContextProvider>
   );
 }
 
