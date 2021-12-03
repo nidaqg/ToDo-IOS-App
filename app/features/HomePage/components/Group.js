@@ -14,7 +14,7 @@ export const Group = ({title, onGroupClick}) => {
   return (
     <>
     <GroupItem
-    onPress={() => onGroupClick('ToDo', {group:{title}})}
+    onPress={() => onGroupClick('ToDo', {title:title,})}
     >
     <List.Section>
     <List.Item title={title} left={() => <List.Icon icon="star-outline" />}/>
