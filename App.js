@@ -6,6 +6,7 @@ import { HomeNavigator } from './app/infrastructure/navigation/HomeNavigator';
 //import icons from expo for tab
 import {Ionicons} from "@expo/vector-icons";
 import { TaskGroupContextProvider } from './app/infrastructure/context/GroupListContext';
+import { ToDoListContextProvider } from './app/infrastructure/context/ToDoListContext';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,6 +20,7 @@ export default function App() {
 
   return (
     <TaskGroupContextProvider>
+      <ToDoListContextProvider>
     <NavigationContainer>
     <Tab.Navigator
      screenOptions={({ route }) => ({
@@ -42,6 +44,7 @@ export default function App() {
 
 
     </NavigationContainer>
+    </ToDoListContextProvider>
     </TaskGroupContextProvider>
   );
 }

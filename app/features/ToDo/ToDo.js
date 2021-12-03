@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Keyboard, Alert, ScrollView } from "react-native";
 import {Task} from "./components/Task";
 import {
@@ -9,10 +9,11 @@ import {
   TaskInput,
   BackBtn,
 } from "./components/styles";
+import { ToDoListContext } from "../../infrastructure/context/ToDoListContext";
 
 export const ToDo = ({ navigation, route }) => {
   const [task, setTask] = useState("");
-  const [tasklist, setTasklist] = useState([]);
+  const {tasklist, addToDo, deleteToDo} = useContext(ToDoListContext);
 
   const { title } = route.params;
 
@@ -25,19 +26,13 @@ export const ToDo = ({ navigation, route }) => {
   const handleAddTask = () => {
     Keyboard.dismiss();
     if (task) {
-      setTasklist([...tasklist, task]);
+      addToDo(task)
       setTask(null);
     } else {
       Alert.alert("Oops, looks like you forgot to enter a task!");
     }
   };
 
-  // function to handle deleting task
-  const deleteTask = (index) => {
-    let listCopy = [...tasklist];
-    listCopy.splice(index, 1);
-    setTasklist(listCopy);
-  };
 
   return (
     <>
@@ -56,7 +51,7 @@ export const ToDo = ({ navigation, route }) => {
               {tasklist.map((item, index) => {
                 return (
                   <Task
-                    onSubmit={() => deleteTask(index)}
+                    onSubmit={() => deleteToDo(index)}
                     key={index}
                     item={item}
                   />
