@@ -26,7 +26,7 @@ export const ToDo = ({ navigation, route }) => {
   const handleAddTask = () => {
     Keyboard.dismiss();
     if (task) {
-      addToDo(task)
+      addToDo(task, title)
       setTask(null);
     } else {
       Alert.alert("Oops, looks like you forgot to enter a task!");
@@ -48,15 +48,19 @@ export const ToDo = ({ navigation, route }) => {
         <ScrollView>
           <TasksContainer>
             <>
-              {tasklist.map((item, index) => {
+              {
+              tasklist.map((item, index) => {
+                if(item.title === title){
                 return (
                   <Task
                     onSubmit={() => deleteToDo(index)}
                     key={index}
-                    item={item}
+                    item={item.task}
                   />
-                );
-              })}
+                )} else{null}
+              })
+              
+            }
             </>
           </TasksContainer>
         </ScrollView>

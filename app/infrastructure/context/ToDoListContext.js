@@ -6,8 +6,8 @@ export const ToDoListContext = createContext();
 export const ToDoListContextProvider = ({children}) => {
 const [tasklist, setTasklist] = useState([]);
 
-const add = (task) => {
-    setTasklist([...tasklist, task]);
+const add = (task, title) => {
+    setTasklist([...tasklist, {task: task, title: title}]);
 };
 
 const remove = (index) => {
