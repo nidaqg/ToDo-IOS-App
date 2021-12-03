@@ -1,13 +1,6 @@
 import React from "react";
-import styled from "styled-components/native";
-import { List } from 'react-native-paper';
-
-const GroupItem = styled.TouchableOpacity`
-   border: 1px;
-   border-color: grey;
-   border-radius: 20px;
-   margin: 10px;
-`;
+import {GroupItem, Title, DeleteBtn} from './styles';
+import { AntDesign } from "@expo/vector-icons";
 
 export const Group = ({title, onGroupClick}) => {
 
@@ -16,9 +9,15 @@ export const Group = ({title, onGroupClick}) => {
     <GroupItem
     onPress={() => onGroupClick('ToDo', {title:title,})}
     >
-    <List.Section>
-    <List.Item title={title} left={() => <List.Icon icon="star-outline" />}/>
-  </List.Section>
+      <DeleteBtn
+      onPress={()=>{console.log(title)}}
+      >
+      <AntDesign
+      name= "close"
+      size={15}
+      />
+      </DeleteBtn>
+      <Title>{title}</Title>
 </GroupItem>
       </>
   );

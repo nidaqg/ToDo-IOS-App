@@ -1,14 +1,5 @@
 import React from 'react';
-import styled from "styled-components/native";
-
-
-const HeaderCard = styled.ImageBackground`
-height:200px;
-background-color: dodgerblue;
-align-items: center;
-justify-content: center;
-`
-
+import { HeaderCard } from './styles';
 
 export const Header = () => {
     return (

@@ -4,7 +4,7 @@ import {TextInput } from 'react-native-paper';
 
 export const SafeArea = styled.SafeAreaView`
   flex: 1;
-  background-color: white;
+  background-color: #06304b;
 `;
 
 export const GroupSquare = styled.View`
@@ -50,6 +50,34 @@ position: absolute;
 export const FloatingBtnText = styled.Text`
 color: white;
 font-size: 30px;
+`;
+
+export const GroupItem = styled.TouchableOpacity`
+   border: 1px;
+   border-color: grey;
+   border-radius: 20px;
+   margin: 10px;
+   padding: 30px;
+   align-items: center;
+   justify-content:center;
+   background-color: white;
+`;
+
+export const HeaderCard = styled.ImageBackground`
+height:200px;
+background-color: dodgerblue;
+align-items: center;
+justify-content: center;
+border-bottom-width: 3px;
+`;
+
+export const DeleteBtn = styled.TouchableOpacity`
+background-color: transparent;
+  border-color: #20232a;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 9;
 `;
 
 
