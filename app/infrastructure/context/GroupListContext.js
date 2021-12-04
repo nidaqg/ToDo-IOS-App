@@ -7,8 +7,17 @@ export const TaskGroupContextProvider = ({children}) => {
 
 const [grouplist, setGrouplist] = useState([]);
 
+//function to add group to list
 const add =(taskgroup) => {
     setGrouplist([...grouplist, taskgroup]);
+};
+
+//function to delete group from list
+const remove = (group) => {
+  const newGroupList = grouplist.filter(
+    (x) => x !== group
+  );
+  setGrouplist(newGroupList);
 }
 
   //store task groups in async storage
@@ -48,7 +57,8 @@ const add =(taskgroup) => {
         <TaskGroupContext.Provider
         value={{
             grouplist,
-            addToGroupList: add            
+            addToGroupList: add,
+            removeFromGroupList: remove            
         }}
         >{children}</TaskGroupContext.Provider>
     )

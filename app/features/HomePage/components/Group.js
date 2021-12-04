@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import {GroupItem, Title, DeleteBtn} from './styles';
 import { AntDesign } from "@expo/vector-icons";
+import { TaskGroupContext } from "../../../infrastructure/context/GroupListContext";
 
-export const Group = ({title, onGroupClick}) => {
+export const Group = ({title, onGroupClick, deleteNow}) => {
+const {removeFromGroupList} = useContext(TaskGroupContext);
 
   return (
     <>
@@ -10,7 +12,7 @@ export const Group = ({title, onGroupClick}) => {
     onPress={() => onGroupClick('ToDo', {title:title,})}
     >
       <DeleteBtn
-      onPress={()=>{console.log(title)}}
+      onPress={()=>{removeFromGroupList(title)}}
       >
       <AntDesign
       name= "close"
