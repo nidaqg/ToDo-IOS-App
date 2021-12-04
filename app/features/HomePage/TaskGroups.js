@@ -63,7 +63,10 @@ export const TaskGroups = ({ navigation }) => {
               onChangeText={(taskgroup) => setTaskgroup(taskgroup)}
               value={taskgroup}
               placeholder="add a task group"
-              onSubmitEditing={() => handleSubmit()}
+              onSubmitEditing={() => {
+                handleSubmit()
+                setHidden(!hidden)
+              }}
             />
           </InputContainer>
         </FlipInView>
