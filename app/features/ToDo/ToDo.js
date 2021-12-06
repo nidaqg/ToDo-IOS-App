@@ -48,7 +48,7 @@ export const ToDo = ({ navigation, route }) => {
         <ScrollView>
           <TasksContainer>
             <>
-              {
+              {tasklist !== null ? (
               tasklist.map((item, index) => {
                 if(item.title === title){
                 return (
@@ -59,7 +59,7 @@ export const ToDo = ({ navigation, route }) => {
                   />
                 )} else{null}
               })
-              
+              ):(null)
             }
             </>
           </TasksContainer>
