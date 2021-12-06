@@ -1,15 +1,19 @@
 import React, {createContext, useState, useEffect} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const TaskGroupContext = createContext();
 
 export const TaskGroupContextProvider = ({children}) => {
 
-const [grouplist, setGrouplist] = useState([]);
+const [grouplist, setGrouplist] = useState(null);
 
 //function to add group to list
 const add =(taskgroup) => {
-    setGrouplist([...grouplist, taskgroup]);
+  if (grouplist !== null){
+    setGrouplist([...grouplist, taskgroup])
+  } else {
+    setGrouplist([taskgroup])
+  }
 };
 
 //function to delete group from list
@@ -24,8 +28,8 @@ const remove = (group) => {
   const storeGroups = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
-      console.log(jsonValue);
-      await AsyncStorage.setItem('@storage_Key', jsonValue);
+      console.log("STORE",jsonValue);
+      await AsyncStorage.setItem('@GroupList', jsonValue);
     } catch (e) {
       console.log("saving error: ", e);
     }
@@ -34,9 +38,9 @@ const remove = (group) => {
   //load stored groups
   const getGroups = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem('@storage_Key');
-      console.log("GET",jsonValue)
-      return jsonValue != null ? setGrouplist(JSON.parse(jsonValue)) : null;
+      const value = await AsyncStorage.getItem('@GroupList');
+      console.log("GET",value)
+      return value !== null ? setGrouplist(JSON.parse(value)) : null;
     } catch (e) {
       console.log(e);
     }
@@ -44,7 +48,8 @@ const remove = (group) => {
 
   //load and save groups to async
   useEffect(() => {
-    storeGroups(grouplist);
+    grouplist !== null ?
+    storeGroups(grouplist) : null
   }, [grouplist]);
 
   useEffect(() => {

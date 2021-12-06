@@ -35,7 +35,8 @@ export const TaskGroups = ({ navigation }) => {
       <Header />
       <ScrollView>
         <GroupSquare>
-          {grouplist.map((item, index) => {
+          {grouplist !== null ? (
+          grouplist.map((item, index) => {
             return (
               <Group
                 key={index}
@@ -43,7 +44,8 @@ export const TaskGroups = ({ navigation }) => {
                 onGroupClick={navigation.navigate}
               />
             );
-          })}
+          })
+          ):(null)}
         </GroupSquare>
       </ScrollView>
 
