@@ -1,13 +1,17 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const ToDoListContext = createContext();
 
 export const ToDoListContextProvider = ({children}) => {
-const [tasklist, setTasklist] = useState([]);
+const [tasklist, setTasklist] = useState(null);
 
 const add = (task, title) => {
-    setTasklist([...tasklist, {task: task, title: title}]);
+  if (tasklist !== null){
+    setTasklist([...tasklist, {task: task, title: title}])
+} else {
+  setTasklist([{task: task, title: title}])
+}
 };
 
 const remove = (index) => {
@@ -16,36 +20,36 @@ const remove = (index) => {
   setTasklist(listCopy);
 };
 
-  // //store task groups in async storage
-  // const storeGroups = async (value) => {
-  //   try {
-  //     const jsonValue = JSON.stringify(value);
-  //     console.log(jsonValue);
-  //     await AsyncStorage.setItem('@storage_Key', jsonValue);
-  //   } catch (e) {
-  //     console.log("saving error: ", e);
-  //   }
-  // };
+const storeToDos = async (value) => {
+  try {
+    const jsonValue = JSON.stringify(value);
+    console.log("STORE",jsonValue);
+    await AsyncStorage.setItem('@ToDos', jsonValue);
+  } catch (e) {
+    console.log("saving error: ", e);
+  }
+};
 
-  // //load stored groups
-  // const getGroups = async () => {
-  //   try {
-  //     const jsonValue = await AsyncStorage.getItem('@storage_Key');
-  //     console.log("GET",jsonValue)
-  //     return jsonValue != null ? setGrouplist(JSON.parse(jsonValue)) : null;
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+//load stored groups
+const getToDos = async () => {
+  try {
+    const value = await AsyncStorage.getItem('@ToDos');
+    console.log("GET",value)
+    return value !== null ? setTasklist(JSON.parse(value)) : null;
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-  // //load and save groups to async
-  // useEffect(() => {
-  //   storeGroups(grouplist);
-  // }, [grouplist]);
+//load and save groups to async
+useEffect(() => {
+  tasklist !== null ?
+  storeToDos(tasklist) : null
+}, [tasklist]);
 
-  // useEffect(() => {
-  //   getGroups();
-  // }, []);
+useEffect(() => {
+  getToDos();
+}, []);
 
 
 
