@@ -1,11 +1,14 @@
-import React, {createContext, useState, useEffect} from 'react';
+import React, {createContext, useState, useEffect, useContext} from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ToDoListContext } from './ToDoListContext';
 
 export const TaskGroupContext = createContext();
 
 export const TaskGroupContextProvider = ({children}) => {
 
 const [grouplist, setGrouplist] = useState(null);
+
+const{removeEntireGroup} = useContext(ToDoListContext)
 
 //function to add group to list
 const add =(taskgroup) => {
@@ -22,6 +25,7 @@ const remove = (group) => {
     (x) => x !== group
   );
   setGrouplist(newGroupList);
+  removeEntireGroup(group);
 }
 
   //store task groups in async storage

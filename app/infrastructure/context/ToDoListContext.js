@@ -20,6 +20,13 @@ const remove = (index) => {
   setTasklist(listCopy);
 };
 
+const removeEntireGroup = (group) => {
+const newTaskList = tasklist.filter(
+  (tasklist) => group !== tasklist.title
+);
+setTasklist(newTaskList);
+}
+
 const storeToDos = async (value) => {
   try {
     const jsonValue = JSON.stringify(value);
@@ -58,7 +65,8 @@ useEffect(() => {
         value={{
             tasklist,
             addToDo: add,
-            deleteToDo: remove           
+            deleteToDo: remove,
+            removeEntireGroup           
         }}
         >{children}</ToDoListContext.Provider>
     )

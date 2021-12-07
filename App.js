@@ -19,8 +19,8 @@ const SettingsScreen = () => {
 export default function App() {
 
   return (
+    <ToDoListContextProvider>
     <TaskGroupContextProvider>
-      <ToDoListContextProvider>
     <NavigationContainer>
     <Tab.Navigator
      screenOptions={({ route }) => ({
@@ -44,8 +44,8 @@ export default function App() {
 
 
     </NavigationContainer>
-    </ToDoListContextProvider>
     </TaskGroupContextProvider>
+    </ToDoListContextProvider>
   );
 }
 
